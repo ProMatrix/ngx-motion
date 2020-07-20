@@ -1,0 +1,20 @@
+{
+  "name": "ngx-motion",
+  "version": "0.0.0",
+  "description": "Actions in Motion for Angular apps",
+  "main": "index.js",
+  "author": "David Donovan",
+  "license": "MIT",
+  "scripts": {
+    "Npm:Install": "npm install",
+    "Npm:Update": "npm update",
+    "Build:Watch:Hook": "node ./node_modules/typescript/bin/tsc git-hooks/pre-push.ts -w"
+  },
+  "dependencies": {
+    "tslib": "^1.10.0",
+    "@types/node": "^13.1.1"
+  },
+  "devDependencies": {
+    "project-control": "^0.0.15"
+  }
+}

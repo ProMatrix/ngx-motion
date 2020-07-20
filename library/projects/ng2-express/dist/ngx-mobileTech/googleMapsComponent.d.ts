@@ -1,0 +1,34 @@
+import { EventEmitter, ChangeDetectorRef, NgZone } from '@angular/core';
+export declare class GoogleMapsComponent {
+    private readonly cd;
+    private readonly ngZone;
+    promise: Promise<any>;
+    private url;
+    googleMapKey: string;
+    private maplat;
+    private maplng;
+    private map;
+    private marker;
+    isVisible: boolean;
+    owner: any;
+    updateCoordinatesCallback: string;
+    updateAddressCallback: string;
+    width: string;
+    height: string;
+    widthPercent: string;
+    heightPercent: string;
+    latitude: number;
+    longitude: number;
+    visibleChange: EventEmitter<boolean>;
+    constructor(cd: ChangeDetectorRef, ngZone: NgZone);
+    initialize(): Promise<any>;
+    private loadGoogleMaps;
+    private recenterMapAndMarker;
+    private markerDragEnd;
+    private onClickUpdateCoordsFromMarkerLocation;
+    private updateOwner;
+    private onBlurLatLng;
+    findMe(): void;
+    useAddress(address$: string, zipcode$: string): void;
+    lookupAddress(): void;
+}

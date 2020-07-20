@@ -1,0 +1,16 @@
+{
+  "name": "ngx-motion",
+  "version": "0.0.0",
+  "description": "UI and animation library for Angular",
+  "ngPackage": {
+    "lib": {
+      "entryFile": "public-api.ts"
+    },
+    "dest": "dist"
+  },
+  "scripts": {
+    "update-npm": "npm version patch && npm publish"
+  },
+  "author": "David Donovan",
+  "license": "MIT"
+}

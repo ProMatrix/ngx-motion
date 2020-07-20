@@ -1,0 +1,9 @@
+Project Notes:
+
+Start Build:Watch before making changes to git-hooks
+Use Build:Watch to interactively make changes while debugging
+
+Publishing this package to npm can be done 3 ways:
+1) Utilizing the Git hooks
+2) Using the scripts, package-ng2-express then update-npm
+3) From the project-control debug "npm ngx-motion"

@@ -1,0 +1,21 @@
+{
+  "name": "ngx-motion",
+  "version": "0.0.0",
+  "description": "Actions in Motion for Angular apps",
+  "scripts": {
+    "Npm:Install": "npm install",
+    "Npm:Update": "npm update",
+    "package-ng2-express": "ng-packagr -p projects/ng2-express/package.json",
+    "postinstall": "ngcc"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/compiler": "9.1.0",
+    "@angular/core": "9.1.0"
+  },
+  "devDependencies": {
+    "@angular/compiler-cli": "9.1.0",
+    "ng-packagr": "^10.0.2",
+    "typescript": "3.8.3"
+  }
+}

@@ -1,0 +1,14 @@
+<div [@modalDialogTrigger] *ngIf="isVisible" class="modalDialog" style="width: 350px; height: 53px; " [style.top.px]="positionTop">
+  <ng-content></ng-content>
+
+  <button *ngIf="isClosable" (click)="closeDialog()" aria-label="Close" class="dialog__close-btn">X</button>
+  <div style="text-align: center; ">
+    <i class="fa fa-volume-up fa-2x" style="color: cornflowerblue; float:left; margin-left: 20px;"></i>
+    <div class="btn-group" style="margin-right: 20px;">
+      <button mat-fab color="accent" [disabled]="!t2sOn" style="top: -2px;" (click)="onClickStop()">Stop</button>
+      <button mat-fab color="accent" [disabled]="!t2sOn" style="top: -2px; left: 5px;" (click)="onClickPause()">Pause</button>
+      <button mat-fab color="accent" [disabled]="t2sOn" style="top: -2px; left: 10px;" (click)="onClickStart()">{{ startButtonLabel }}</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="isVisible" class="overlay" (click)="closeDialog()"></div>
