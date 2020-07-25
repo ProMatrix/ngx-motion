@@ -5,17 +5,18 @@
   "scripts": {
     "Npm:Install": "npm install",
     "Npm:Update": "npm update",
+    "Build:Watch:Hook": "node ./node_modules/typescript/bin/tsc ../git-hooks/pre-push.ts -w",
     "package-ng2-express": "ng-packagr -p projects/ng2-express/package.json",
     "postinstall": "ngcc"
   },
   "private": true,
   "dependencies": {
-    "@angular/compiler": "9.1.0",
-    "@angular/core": "9.1.0"
+    "@angular/compiler": "^10.0.5",
+    "@angular/core": "^10.0.5"
   },
   "devDependencies": {
-    "@angular/compiler-cli": "9.1.0",
-    "ng-packagr": "^10.0.2",
-    "typescript": "3.8.3"
+    "@angular/compiler-cli": "^10.0.5",
+    "ng-packagr": "^10.0.3",
+    "typescript": "^3.9.7"
   }
 }

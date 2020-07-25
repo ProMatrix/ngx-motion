@@ -1,7 +1,6 @@
 import { TaskNpmPublish } from "../../project-control";
 
 export class PrePush {
-
     
     constructor() {
         try {

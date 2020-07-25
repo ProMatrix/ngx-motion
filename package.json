@@ -7,14 +7,10 @@
   "license": "MIT",
   "scripts": {
     "Npm:Install": "npm install",
-    "Npm:Update": "npm update",
-    "Build:Watch:Hook": "node ./node_modules/typescript/bin/tsc git-hooks/pre-push.ts -w"
+    "Npm:Update": "npm update"
   },
   "dependencies": {
     "tslib": "^1.10.0",
     "@types/node": "^13.1.1"
-  },
-  "devDependencies": {
-    "project-control": "^0.0.15"
   }
 }
