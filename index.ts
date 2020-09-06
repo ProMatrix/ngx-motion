@@ -1,5 +1,4 @@
 export * from './library/projects/ng2-express/ngx-animation/appAnimation.module';
-export * from './library/projects/ng2-express/ngx-animation/appAnimation.module';
 export * from './library/projects/ng2-express/ngx-animation/modalDialog';
 export * from './library/projects/ng2-express/ngx-appHelper/appServices';
 export * from './library/projects/ng2-express/ngx-appHelper/appHelper.module';
