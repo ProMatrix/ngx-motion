@@ -9,7 +9,7 @@ import { AppServices } from './appServices';
     ]
 })
 export class AppHelperModule {
-    static forRoot(): ModuleWithProviders {
+    static forRoot(): ModuleWithProviders<AppHelperModule> {
         return {
           ngModule: AppHelperModule,
             providers: [AppServices]

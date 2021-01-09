@@ -24,7 +24,6 @@ export declare class GoogleMapsComponent {
     initialize(): Promise<any>;
     private loadGoogleMaps;
     private recenterMapAndMarker;
-    private markerDragEnd;
     private onClickUpdateCoordsFromMarkerLocation;
     private updateOwner;
     private onBlurLatLng;

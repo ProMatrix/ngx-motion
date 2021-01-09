@@ -67,11 +67,11 @@ export class GoogleMapsComponent {
     this.marker = new google.maps.Marker({ position: new google.maps.LatLng(this.maplat, this.maplng), draggable: true });
     this.marker.setMap(this.map);
 
-    google.maps.event.addListener(this.map, 'click', (event: google.maps.MouseEvent) => {
-      this.marker.setPosition(event.latLng);
-      this.latitude = event.latLng.lat();
-      this.longitude = event.latLng.lng();
-    });
+    // google.maps.event.addListener(this.map, 'click', (event: google.maps.MouseEvent) => {
+    //   this.marker.setPosition(event.latLng);
+    //   this.latitude = event.latLng.lat();
+    //   this.longitude = event.latLng.lng();
+    // });
 
     const contentInfoWindow = `
         <div>
@@ -96,10 +96,10 @@ export class GoogleMapsComponent {
       infowindow.open(this.map, this.marker);
     });
 
-    google.maps.event.addListener(this.marker, 'dragend', (event: google.maps.MouseEvent) => {
-      this.latitude = event.latLng.lat();
-      this.longitude = event.latLng.lng();
-    });
+    // google.maps.event.addListener(this.marker, 'dragend', (event: google.maps.MouseEvent) => {
+    //   this.latitude = event.latLng.lat();
+    //   this.longitude = event.latLng.lng();
+    // });
   }
 
   private recenterMapAndMarker() {
@@ -112,10 +112,10 @@ export class GoogleMapsComponent {
     }
   }
 
-  private markerDragEnd(m: any, $event: google.maps.MouseEvent) {
-    this.latitude = $event.latLng.lat();
-    this.longitude = $event.latLng.lng();
-  }
+  // private markerDragEnd(m: any, $event: google.maps.MouseEvent) {
+  //   this.latitude = $event.latLng.lat();
+  //   this.longitude = $event.latLng.lng();
+  // }
 
   private onClickUpdateCoordsFromMarkerLocation() {
     this.ngZone.run(() => {
