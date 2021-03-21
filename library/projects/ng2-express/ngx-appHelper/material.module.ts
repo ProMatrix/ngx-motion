@@ -74,6 +74,7 @@ import { CdkTableModule } from '@angular/cdk/table';
   exports: [
     MatAutocompleteModule,
     MatButtonModule,
+    MatBadgeModule,
     MatButtonToggleModule,
     MatCardModule,
     MatCheckboxModule,
