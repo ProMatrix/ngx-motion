@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatBadgeModule } from '@angular/material/badge';
 //import { MatNativeDateModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -37,6 +38,7 @@ import { CdkTableModule } from '@angular/cdk/table';
   imports: [
     MatAutocompleteModule,
     MatButtonModule,
+    MatBadgeModule,
     MatButtonToggleModule,
     MatCardModule,
     MatCheckboxModule,
