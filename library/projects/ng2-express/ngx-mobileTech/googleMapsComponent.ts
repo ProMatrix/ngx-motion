@@ -38,7 +38,9 @@ export class GoogleMapsComponent {
     this.promise = new Promise(() => {
       const s = '__onGoogleLoaded';
       window[s] = () => {
-        this.loadGoogleMaps();
+        setTimeout(() => {
+          this.loadGoogleMaps();
+        });
       };
 
       const node = document.createElement('script');
