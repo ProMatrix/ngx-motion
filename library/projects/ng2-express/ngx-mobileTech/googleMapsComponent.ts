@@ -40,7 +40,7 @@ export class GoogleMapsComponent {
       window[s] = () => {
         setTimeout(() => {
           this.loadGoogleMaps();
-        });
+        }, 1000);
       };
 
       const node = document.createElement('script');
