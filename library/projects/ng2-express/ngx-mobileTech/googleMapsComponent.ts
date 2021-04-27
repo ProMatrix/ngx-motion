@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectorRef, NgZone } from '@angular/core';
-import { trigger, state, animate, transition, style } from '@angular/animations';
 import { } from 'google-maps';
 
 @Component({
@@ -31,7 +30,6 @@ export class GoogleMapsComponent {
   @Output() visibleChange = new EventEmitter<boolean>();
 
   constructor(private readonly cd: ChangeDetectorRef, private readonly ngZone: NgZone) {
-    debugger;
   }
 
   public initialize() {
@@ -68,39 +66,12 @@ export class GoogleMapsComponent {
     this.marker = new google.maps.Marker({ position: new google.maps.LatLng(this.maplat, this.maplng), draggable: true });
     this.marker.setMap(this.map);
 
-    // google.maps.event.addListener(this.map, 'click', (event: google.maps.MouseEvent) => {
-    //   this.marker.setPosition(event.latLng);
-    //   this.latitude = event.latLng.lat();
-    //   this.longitude = event.latLng.lng();
-    // });
-
     const contentInfoWindow = `
         <div>
         <div>Set the Latitude and Longitude</div>
         <div>to this marker location?</div>
         <button style="margin-top:.5em;" class="btn btn-primary btn-xs buttonUpdateCoordsFromMarkerLocation">Update</button>
         </div>`;
-    google.maps.event.addListener(this.marker, 'click', () => {
-
-      const div = document.createElement('div');
-      div.innerHTML = contentInfoWindow;
-      const buttonUpdateCoordsFromMarkerLocation = div.getElementsByClassName('buttonUpdateCoordsFromMarkerLocation');
-      if (buttonUpdateCoordsFromMarkerLocation.length) {
-        const button = buttonUpdateCoordsFromMarkerLocation[0] as HTMLButtonElement;
-        button.onclick = () => {
-          this.onClickUpdateCoordsFromMarkerLocation();
-        };
-      }
-      const infowindow = new google.maps.InfoWindow({
-        content: div
-      });
-      infowindow.open(this.map, this.marker);
-    });
-
-    // google.maps.event.addListener(this.marker, 'dragend', (event: google.maps.MouseEvent) => {
-    //   this.latitude = event.latLng.lat();
-    //   this.longitude = event.latLng.lng();
-    // });
   }
 
   private recenterMapAndMarker() {
@@ -112,11 +83,6 @@ export class GoogleMapsComponent {
       this.marker.setPosition(latLgn);
     }
   }
-
-  // private markerDragEnd(m: any, $event: google.maps.MouseEvent) {
-  //   this.latitude = $event.latLng.lat();
-  //   this.longitude = $event.latLng.lng();
-  // }
 
   private onClickUpdateCoordsFromMarkerLocation() {
     this.ngZone.run(() => {
@@ -173,5 +139,4 @@ export class GoogleMapsComponent {
       }
     });
   }
-
 }
