@@ -8,7 +8,7 @@ import { Component, Input, Output, EventEmitter, ChangeDetectorRef, NgZone } fro
 export class GoogleMapsComponent {
   promise: Promise<any>;
   private url: string;
-  public googleMapKey: string;
+  public googleMapKey = 'ApiKey goes here';
   private maplat = 0;
   private maplng = 0;
   private map: google.maps.Map;
