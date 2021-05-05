@@ -1,12 +1,9 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectorRef, NgZone } from '@angular/core';
-import { } from 'google-maps';
 
 @Component({
   selector: 'google-maps',
-  //#region template:
   template: `<div id="googleMap" [style.height.px]="height"
   [style.height.%]="heightPercent" [style.width.px]="width" [style.width.%]="widthPercent" ></div>`
-  // #endregion
 })
 export class GoogleMapsComponent {
   promise: Promise<any>;
