@@ -27,6 +27,7 @@ export class GoogleMapsComponent {
   @Output() visibleChange = new EventEmitter<boolean>();
 
   constructor(private readonly cd: ChangeDetectorRef, private readonly ngZone: NgZone) {
+    debugger;
   }
 
   public initialize() {
