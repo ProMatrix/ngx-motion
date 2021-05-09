@@ -2,27 +2,17 @@ import { Component, Input, Output, EventEmitter, ChangeDetectorRef, NgZone } fro
 
 @Component({
   selector: 'google-maps',
-  template: `<div id="googleMap" [style.height.px]="height"
-  [style.height.%]="heightPercent" [style.width.px]="width" [style.width.%]="widthPercent" ></div>`
+  template: `<div id="googleMap"[style.height.%]="heightPercent" [style.width.%]="widthPercent" ></div>`
 })
 export class GoogleMapsComponent {
   promise: Promise<any>;
-  private url: string;
-  public googleMapKey = 'ApiKey goes here';
-  private maplat = 0;
-  private maplng = 0;
-  private map: google.maps.Map;
-  private marker: google.maps.Marker;
+  url: string;
+  googleMapKey = 'api key goes here';
+  map: google.maps.Map;
+  marker: google.maps.Marker;
 
-  @Input() isVisible: boolean;
-  @Input() owner: any;
-  @Input() updateCoordinatesCallback: string;
-  @Input() updateAddressCallback: string;
-  @Input() width = '';
-  @Input() height = '';
   @Input() widthPercent = '';
   @Input() heightPercent = '';
-
   address: string;
   zipcode: string;
   latitude: number;
@@ -51,48 +41,26 @@ export class GoogleMapsComponent {
   }
 
   private loadGoogleMaps() {
-    if (this.latitude && this.longitude) {
-      this.maplat = this.latitude;
-      this.maplng = this.longitude;
-    }
-
     const mapProp = {
-      center: new google.maps.LatLng(this.maplat, this.maplng),
+      center: new google.maps.LatLng(0, 0),
       zoom: 13,
       fullscreenControl: false,
       streetViewControl: false
     };
 
     this.map = new google.maps.Map(document.getElementById('googleMap'), mapProp);
-    this.marker = new google.maps.Marker({ position: new google.maps.LatLng(this.maplat, this.maplng), draggable: true });
+    this.marker = new google.maps.Marker({ position: new google.maps.LatLng(0, 0), draggable: true, title: 'You are here!' });
+    this.marker.setVisible(false);   
     this.marker.setMap(this.map);
   }
 
   private recenterMapAndMarker() {
     if (this.latitude && this.longitude) {
-      this.maplat = this.latitude;
-      this.maplng = this.longitude;
-      const latLgn = new google.maps.LatLng(this.maplat, this.maplng);
+      const latLgn = new google.maps.LatLng(this.latitude, this.longitude);
       this.map.setCenter(latLgn);
       this.marker.setPosition(latLgn);
     }
   }
-
-  // private onClickUpdateCoordsFromMarkerLocation() {
-  //   this.ngZone.run(() => {
-  //     this.updateOwner();
-  //   });
-  // }
-
-  // private updateOwner() {
-  //   if (this.owner && this.updateCoordinatesCallback) {
-  //     this.owner[this.updateCoordinatesCallback](Math.round(this.latitude * 100000) / 100000, Math.round(this.longitude * 100000) / 100000);
-  //   }
-  // }
-
-  // private onBlurLatLng() {
-  //   this.recenterMapAndMarker();
-  // }
 
   public findMe() {
     if (navigator.geolocation) {
@@ -100,7 +68,8 @@ export class GoogleMapsComponent {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.recenterMapAndMarker();
-        // this.updateOwner();
+        this.lookupAddress();
+        this.marker.setVisible(true); 
       }, (error) => {
         alert(error.message);
       });
@@ -114,21 +83,24 @@ export class GoogleMapsComponent {
         this.latitude = results[0].geometry.location.lat();
         this.longitude = results[0].geometry.location.lng();
         this.recenterMapAndMarker();
-        // this.updateOwner();
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
     });
   }
 
-  public lookupAddress() {
+  lookupAddress() {
     const geocoder = new google.maps.Geocoder();
     const latlng = { lat: this.latitude, lng: this.longitude };
     geocoder.geocode({ location: latlng }, (results, status) => {
       if (status === google.maps.GeocoderStatus.OK) {
-        const address = results[0].address_components[0].short_name + ' ' + results[0].address_components[1].short_name;
-        this.owner[this.updateAddressCallback](address, results[0].address_components[6].short_name);
-      } else {
+        const parts = results[1].formatted_address.split(',');
+        if (parts.length > 1) {
+          this.address = parts[0] + ', ' + parts[1];
+        }
+        this.zipcode = results[1].address_components[7].short_name;
+      }
+      else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
     });

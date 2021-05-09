@@ -1,29 +1,23 @@
+/// <reference types="googlemaps" />
 import { ChangeDetectorRef, NgZone } from '@angular/core';
 export declare class GoogleMapsComponent {
     private readonly cd;
     private readonly ngZone;
     promise: Promise<any>;
-    private url;
+    url: string;
     googleMapKey: string;
-    private maplat;
-    private maplng;
-    private map;
-    private marker;
-    isVisible: boolean;
-    owner: any;
-    updateCoordinatesCallback: string;
-    updateAddressCallback: string;
-    width: string;
-    height: string;
+    map: google.maps.Map;
+    marker: google.maps.Marker;
     widthPercent: string;
     heightPercent: string;
+    address: string;
+    zipcode: string;
     latitude: number;
     longitude: number;
     constructor(cd: ChangeDetectorRef, ngZone: NgZone);
     initialize(): Promise<any>;
     private loadGoogleMaps;
     private recenterMapAndMarker;
-    private updateOwner;
     findMe(): void;
     useAddress(address$: string, zipcode$: string): void;
     lookupAddress(): void;
