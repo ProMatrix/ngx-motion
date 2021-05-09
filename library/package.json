@@ -4,7 +4,7 @@
   "description": "Actions in Motion for Angular apps",
   "scripts": {
     "Npm:Install": "npm install",
-    "Npm:Update": "npm update",
+    "Build:Watch:Update": "xcopy C:\\ProMatrix.2\\NgResources\\ngx-motion\\library\\projects\\ng2-express\\dist\\*.* C:\\ProMatrix.2\\nx.angular.studio\\promatrix\\node_modules\\ngx-motion /e /y",
     "Build:Watch:Hook": "node ./node_modules/typescript/bin/tsc ../git-hooks/pre-push.ts -w",
     "package-ng2-express": "ng-packagr -p projects/ng2-express/package.json",
     "postinstall": "ngcc"
