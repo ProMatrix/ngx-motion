@@ -22,9 +22,11 @@ export class GoogleMapsComponent {
   @Input() height = '';
   @Input() widthPercent = '';
   @Input() heightPercent = '';
-  @Input() latitude: number;
-  @Input() longitude: number;
-  @Output() visibleChange = new EventEmitter<boolean>();
+
+  address: string;
+  zipcode: string;
+  latitude: number;
+  longitude: number;
 
   constructor(private readonly cd: ChangeDetectorRef, private readonly ngZone: NgZone) {
   }
@@ -49,7 +51,7 @@ export class GoogleMapsComponent {
   }
 
   private loadGoogleMaps() {
-    if (!isNaN(this.latitude) && !isNaN(this.longitude)) {
+    if (this.latitude && this.longitude) {
       this.maplat = this.latitude;
       this.maplng = this.longitude;
     }
@@ -64,17 +66,10 @@ export class GoogleMapsComponent {
     this.map = new google.maps.Map(document.getElementById('googleMap'), mapProp);
     this.marker = new google.maps.Marker({ position: new google.maps.LatLng(this.maplat, this.maplng), draggable: true });
     this.marker.setMap(this.map);
-
-    const contentInfoWindow = `
-        <div>
-        <div>Set the Latitude and Longitude</div>
-        <div>to this marker location?</div>
-        <button style="margin-top:.5em;" class="btn btn-primary btn-xs buttonUpdateCoordsFromMarkerLocation">Update</button>
-        </div>`;
   }
 
   private recenterMapAndMarker() {
-    if (!isNaN(this.latitude) && !isNaN(this.longitude)) {
+    if (this.latitude && this.longitude) {
       this.maplat = this.latitude;
       this.maplng = this.longitude;
       const latLgn = new google.maps.LatLng(this.maplat, this.maplng);
@@ -83,21 +78,21 @@ export class GoogleMapsComponent {
     }
   }
 
-  private onClickUpdateCoordsFromMarkerLocation() {
-    this.ngZone.run(() => {
-      this.updateOwner();
-    });
-  }
+  // private onClickUpdateCoordsFromMarkerLocation() {
+  //   this.ngZone.run(() => {
+  //     this.updateOwner();
+  //   });
+  // }
 
-  private updateOwner() {
-    if (this.owner && this.updateCoordinatesCallback) {
-      this.owner[this.updateCoordinatesCallback](Math.round(this.latitude * 100000) / 100000, Math.round(this.longitude * 100000) / 100000);
-    }
-  }
+  // private updateOwner() {
+  //   if (this.owner && this.updateCoordinatesCallback) {
+  //     this.owner[this.updateCoordinatesCallback](Math.round(this.latitude * 100000) / 100000, Math.round(this.longitude * 100000) / 100000);
+  //   }
+  // }
 
-  private onBlurLatLng() {
-    this.recenterMapAndMarker();
-  }
+  // private onBlurLatLng() {
+  //   this.recenterMapAndMarker();
+  // }
 
   public findMe() {
     if (navigator.geolocation) {
@@ -105,7 +100,7 @@ export class GoogleMapsComponent {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.recenterMapAndMarker();
-        this.updateOwner();
+        // this.updateOwner();
       }, (error) => {
         alert(error.message);
       });
@@ -119,7 +114,7 @@ export class GoogleMapsComponent {
         this.latitude = results[0].geometry.location.lat();
         this.longitude = results[0].geometry.location.lng();
         this.recenterMapAndMarker();
-        this.updateOwner();
+        // this.updateOwner();
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
