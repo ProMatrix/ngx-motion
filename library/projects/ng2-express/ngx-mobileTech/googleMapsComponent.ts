@@ -13,10 +13,10 @@ export class GoogleMapsComponent {
 
   @Input() widthPercent = '';
   @Input() heightPercent = '';
-  address: string;
-  zipcode: string;
-  latitude: number;
-  longitude: number;
+  address = '';
+  zipcode = '';
+  latitude = 0;
+  longitude = 0;
 
   constructor(private readonly cd: ChangeDetectorRef, private readonly ngZone: NgZone) {
   }
@@ -76,18 +76,20 @@ export class GoogleMapsComponent {
     }
   }
 
-  public useAddress(address$: string, zipcode$: string) {
+  findAddress() {
     const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ address: address$ + ' ' + zipcode$ }, (results, status) => {
-      if (status === google.maps.GeocoderStatus.OK) {
-        this.latitude = results[0].geometry.location.lat();
-        this.longitude = results[0].geometry.location.lng();
-        this.recenterMapAndMarker();
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
+    geocoder.geocode({ address: this.address + ' ' + this.zipcode }, (results, status) => {
+        if (status === google.maps.GeocoderStatus.OK) {
+            this.latitude = results[0].geometry.location.lat();
+            this.longitude = results[0].geometry.location.lng();
+            this.recenterMapAndMarker();
+            this.marker.setVisible(true);
+        }
+        else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
     });
-  }
+}
 
   lookupAddress() {
     const geocoder = new google.maps.Geocoder();

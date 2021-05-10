@@ -19,6 +19,6 @@ export declare class GoogleMapsComponent {
     private loadGoogleMaps;
     private recenterMapAndMarker;
     findMe(): void;
-    useAddress(address$: string, zipcode$: string): void;
+    findAddress(address$: any, zipcode$: any): void;
     lookupAddress(): void;
 }
